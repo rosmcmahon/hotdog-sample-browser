@@ -1,7 +1,9 @@
 {
   "name": "hotdog-sample-browser",
   "version": "0.1.0",
-  "private": true,
+  "description": "An interactive dApp that uses the arweave permaweb as storage for short, high quality audio samples.",
+  "author": "Ros McMahon rosmcmahon@gmail.com",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@types/jest": "24.0.17",
     "@types/node": "12.7.2",
