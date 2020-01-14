@@ -22,4 +22,5 @@ An interactive dApp that uses the arweave permaweb as storage for short, high qu
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+** this has now changed to [Expo CLI](https://github.com/expo/expo-cli)
 This project utilizes the Arweave Permaweb for backend storage and retrieval [Arweave Team](https://github.com/ArweaveTeam)

@@ -1,38 +1,23 @@
 {
-  "name": "hotdog-sample-browser",
-  "version": "0.1.0",
-  "description": "An interactive dApp that uses the arweave permaweb as storage for short, high quality audio samples.",
-  "author": "Ros McMahon rosmcmahon@gmail.com",
-  "license": "GPL-3.0-or-later",
-  "dependencies": {
-    "@types/jest": "24.0.17",
-    "@types/node": "12.7.2",
-    "@types/react": "16.9.2",
-    "@types/react-dom": "16.8.5",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1",
-    "typescript": "3.5.3"
-  },
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "arweave": "^1.6.0",
+    "expo": "~36.0.0",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+    "react-native-web": "~0.11.7"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "devDependencies": {
+    "babel-preset-expo": "~8.0.0",
+    "@babel/core": "^7.0.0"
+  },
+  "private": true
 }
