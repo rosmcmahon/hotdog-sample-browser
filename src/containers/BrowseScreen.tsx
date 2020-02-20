@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import FileExplorer from '../components/FileExplorer';
 import Colors from '../utility/Colors';
 import { Inode, InodeStatus } from '../storage/Inode'
+import { doArweave } from '../storage/StorageArweave'
+
 
 const DATA= [
 	{key:'..', title:'..'},
@@ -18,16 +20,15 @@ const DATA= [
 
 
 
-const BrowseScreen =  (props) => {
+const BrowseScreen =  ({wallet}) => {
 
 	// const currentDirectory = useState <- relative to wallet root
 	// current dirlist - always has '..', 
 	// props.selection = current file ??
 
 	const onPressNewFolder = () =>{
-		const inode = new Inode()
-		inode.name = InodeStatus.false.toString()
-		console.log(inode.name)
+		
+		console.log('onPressNewFolder')
 	}
 
 	return (

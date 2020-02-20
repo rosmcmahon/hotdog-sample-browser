@@ -1,4 +1,4 @@
-
+import * as Storage from './StorageArweave'
 
 export class Inode {
 	name: string
@@ -8,7 +8,12 @@ export class Inode {
 	contentType: string
 	isUploaded: InodeStatus = InodeStatus.false
 	isUploadedMesssages: string
-	//constructor(){}
+	tags: ITags
+	constructor(txid: string, tags: ITags){
+		this.id = txid
+		this.tags = tags
+		this.name = tags["name"]
+	}
 	// write(name: string, id: string, parentId: string, type: string, contentType: string, file?: any){
 	// 	this.name = name
 	// 	this.id = id
@@ -31,6 +36,13 @@ export class Inode {
 		//call arweave functions getData
 		return { data: 'dummy' }
 	}
+	getChildInodes(){
+		return Storage.getChildInodes(this.id)
+	}
+}
+
+interface ITags {
+	[key: string]: string
 }
 
 export enum InodeStatus {

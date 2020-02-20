@@ -10,6 +10,7 @@
   "dependencies": {
     "arweave": "^1.6.0",
     "expo": "~36.0.0",
+    "expo-document-picker": "~8.0.0",
     "modal-react-native-web": "^0.2.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
@@ -18,10 +19,10 @@
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "babel-preset-expo": "^8.0.0",
     "@types/react": "~16.9.0",
     "@types/react-native": "~0.60.23",
-    "@babel/core": "^7.0.0",
-    "babel-preset-expo": "~8.0.0",
     "typescript": "~3.6.3"
   },
   "private": true
