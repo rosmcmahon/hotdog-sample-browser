@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import FileExplorer from '../components/FileExplorer';
 import Colors from '../utility/Colors';
@@ -25,6 +25,10 @@ const BrowseScreen =  ({wallet}) => {
 	// const currentDirectory = useState <- relative to wallet root
 	// current dirlist - always has '..', 
 	// props.selection = current file ??
+
+	useEffect(()=>{
+		
+	},[])
 
 	const onPressNewFolder = () =>{
 		

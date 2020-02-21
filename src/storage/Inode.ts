@@ -1,18 +1,19 @@
 import * as Storage from './StorageArweave'
 
+
+
 export class Inode {
-	name: string
 	id: string //make this generic later
-	parentId: string
-	type: string
-	contentType: string
-	isUploaded: InodeStatus = InodeStatus.false
-	isUploadedMesssages: string
 	tags: ITags
+	// name: string
+	// parentId: string
+	// type: string
+	// contentType: string
+	status: InodeStatus = InodeStatus.false
+	statusMesssages: string
 	constructor(txid: string, tags: ITags){
 		this.id = txid
 		this.tags = tags
-		this.name = tags["name"]
 	}
 	// write(name: string, id: string, parentId: string, type: string, contentType: string, file?: any){
 	// 	this.name = name

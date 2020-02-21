@@ -1,4 +1,5 @@
 import Arweave from 'arweave/web' 
+import { JWKInterface } from 'arweave/web/lib/wallet';
 // I have tried mutliple ways of supporting arweave-js in ReactNative@
 // - using browserified node standard library Crypto - arweavejs complains of Promise expected
 // - installing webview and using window.crypto.subtle- it was a lot of trouble even getting webview to work, dead-end
@@ -13,72 +14,35 @@ const arweave = Arweave.init({
 	logging: false,     // Enable network request logging
 });
 
-const appName = "hotdog-sample-browser-test3"
+const appName = "hotdog-samples-test1"
 const appVersion = "0.0.1"
 console.log("USING App-Name: "+ appName )
 console.log("USING App-Version: "+ appVersion)
+let address = ""
 
-export const getChildInodes = (txid:string) => {
+
+export const getChildInodes = async (parentId: string, jwk: JWKInterface | {} ) => {
+	jwk !== {} ? address = await arweave.wallets.jwkToAddress(jwk as JWKInterface) : address = ""
+
+
+
 	let i1 = {}//new Inode()
 	let i2 = {}//new Inode()
 	return [i1,i2]
 }
 
-
-
-export const doArweave = async () => {
-
-
-
-	// Create Transaction & fill it with data and tags
-	let tx = await arweave.createTransaction({
-		data: '0'
-	}, wallet)
-	
-	var address = await arweave.wallets.jwkToAddress(wallet)
-	console.log('address:'+address)
-	var balance = await arweave.wallets.getBalance(address)
-	console.log('balance:'+arweave.ar.winstonToAr(balance))
-
-	tx.addTag('super-private', 'what you looking at')
-
-
-
-	console.log('cost:'+ arweave.ar.winstonToAr(tx.reward))
-	
-	await arweave.transactions.sign(tx, wallet);
-	var txid = tx.id
-	console.log('txid:'+txid)
-	console.log(tx)
-
-	var timeStart = Date.now() 
-	let response = await arweave.transactions.post(tx)
-	
-	console.log(response);
-
-	// HTTP response codes (200 - ok, 400 - invalid transaction, 500 - error)
-	if( response.status >= 400){
-		throw new Error(JSON.stringify(response))
-	}
-	const timer = setInterval (async() => {
-		let response = await arweave.transactions.getStatus(txid)
-		const codes = {
-			200: 'Permanently saved 😄',
-			202: 'Pending ⛏',
-			404: 'Not found (or not yet propagated, this can take a few seconds)',
-			400: 'Invalid transaction',
-			410: 'Transaction failed',
-			500: 'Unknown error'
+export const getChildInodesDemo = async () => {
+	const gqlQuery = `{
+		parent: transactions(from: "v2XXwq_FvVqH2KR4p_x8H-SQ7rDwZBbykSv-59__Avc", tags: [
+					{name: "App-Name", value: "${appName}"}, {name: "Inode-Parent", value: "0"}, {name: "Inode-Name", value: "Demo Samples"}
+				]) {
+			id
+			tags { name, value }
+			children: linkedFromTransactions(byForeignTag: "Inode-Parent") {
+				id
+				tags { name, value }
+			}
 		}
-		let msg = "Permaweb save status: " + codes[response.status]
-		
-		console.log((new Date())+'::'+msg)
-		if(response.status==200){ 
-			clearInterval(timer) 
-			let duration = (Date.now() - timeStart)/(1000*60) //minutes
-			console.log(msg+' in '+duration+' minutes')
-		}
-
-	}, 10000);
-
+	}`
 }
+
