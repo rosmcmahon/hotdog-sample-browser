@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { EventHandler, SyntheticEvent } from 'react'
 import Modal from '../utility/PlatformImports'
 import {StyleSheet, Text, Linking, Button, View, TouchableHighlight, Platform } from 'react-native'
 import Colors from '../utility/Colors'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputFile from './InputFile'
 
-
-export default function Login ({onClose, open, onChangeFile}) {
+type IProps = {
+	onClose: any
+	open: boolean
+	onChangeFile: any
+}
+export default function Login ({onClose, open, onChangeFile}:IProps) {
 
 	let getTokens;
-	if (Platform.OS == 'web') {
+	if (Platform.OS === 'web') {
 		getTokens = (
 			<Text style={s.webButton}
 				accessibilityRole="link"

@@ -6,13 +6,13 @@ import { StyleSheet, View,
 import BrowseScreen from './src/containers/BrowseScreen'
 import Colors from './src/utility/Colors'
 import Header from './src/containers/Header';
-import { JWKInterface } from 'arweave/web/lib/wallet';
+import { JWKInterface } from './src/types/wallet';
 
 
 
 export default function App() {
 	//const selectedFile/Node = useState('') // txID this gets passed back from fileExplorer
-	const [wallet, setWallet] = useState({})
+	const [wallet, setWallet] = useState<JWKInterface>()
 
   return (
 		<SafeAreaView style={s.appScreen}>

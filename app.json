@@ -1,18 +1,17 @@
 {
   "expo": {
-    "name": "Hotdog Sample Browser",
+    "name": "hotdog-sample-browser",
+    "slug": "hotdog-sample-browser",
     "description": "An interactive dApp that uses the arweave permaweb as storage for short, high quality audio samples.",
-    "slug": "hotdog-sample-browser-ts",
     "owner": "Ros McMahon rosmcmahon@gmail.com",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
+    "githubUrl": "https://github.com/mcmonkeys1/hotdog-sample-browser",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
     "version": "1.0.0",
-    "githubUrl": "https://github.com/mcmonkeys1/hotdog-sample-browser",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

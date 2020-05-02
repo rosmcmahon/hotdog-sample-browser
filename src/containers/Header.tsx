@@ -7,8 +7,10 @@ import { Base64 } from 'js-base64';
 import * as FileSystem from 'expo-file-system';
 import { JWKInterface } from 'arweave/web/lib/wallet'
 
-
-const Header = ({onSetWallet}) => {
+type Iprops = {
+	onSetWallet: Function
+}
+const Header = ({onSetWallet}:Iprops) => {
 	const [loggedIn, setLoggedIn] = useState(false)
 	const [openLoginModal, setOpenLoginModal] = useState(false)
 
@@ -29,10 +31,7 @@ const Header = ({onSetWallet}) => {
 				if(Platform.OS === 'web'){
 					b64 = file.uri.split(',')[1]
 				}else {
-					console.log('hi')
-					b64 = await FileSystem.readAsStringAsync(file.uri, FileSystem.EncodingType.Base64)
-					console.log(b64)
-					// console.log(JSON.stringify(b64))
+					b64 = await FileSystem.readAsStringAsync(file.uri, {encoding: FileSystem.EncodingType.Base64})
 				}
 
 				let strJwk = Base64.decode(b64)
@@ -42,8 +41,8 @@ const Header = ({onSetWallet}) => {
 				onSetWallet(wallet)
 				
 			} catch (err) {
-				console.log((err))
-					alert('Error logging in: ' + err)
+				console.log('Error logging in: ' + err)
+				 //alert('Error logging in: ' + err)
 			}
 		}
 		setOpenLoginModal(false)
