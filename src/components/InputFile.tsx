@@ -13,7 +13,7 @@ export default function InputFile ({onChangeFile}) {
 			/> */}
 				
 					<TouchableOpacity style={s.touchBox} onPress={onChangeFile}>
-						<Text variant="h4">Drop or select a keyfile here.</Text>
+						<Text style={s.touchText}>Drop or select a keyfile here.</Text>
 					</TouchableOpacity>
 		</View>
 	)
@@ -29,4 +29,8 @@ const s = StyleSheet.create({
 		minHeight: 100,
 		justifyContent: 'center'
 	},
+	touchText: {
+		fontWeight: "bold",
+		
+	}
 })

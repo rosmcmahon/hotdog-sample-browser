@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Login from '../components/Login'
-import {StyleSheet, View, Button, Image, Text} from 'react-native'
+import {StyleSheet, View, Button, Image, Text, Platform} from 'react-native'
 import Colors from '../utility/Colors'
 import * as DocumentPicker from 'expo-document-picker'
+import { Base64 } from 'js-base64';
+import * as FileSystem from 'expo-file-system';
+import { JWKInterface } from 'arweave/web/lib/wallet'
 
 
 const Header = ({onSetWallet}) => {
@@ -17,22 +20,29 @@ const Header = ({onSetWallet}) => {
 	}
 
 	const onChangeLogin = async () => {
-		let file = await DocumentPicker.getDocumentAsync({
-			type: '*/*',
-		})
+		let file = await DocumentPicker.getDocumentAsync({ type: '*/*' })
 		if(file.type=='cancel'){ return; }
-		if(file.type=='success')
-		{
+		if(file.type=='success'){
 			try {
-				let b64 = file.uri.split(',')[1]
-				let strJwk = atob(b64)
-				let wallet = JSON.parse(strJwk)
+				
+				let b64: string
+				if(Platform.OS === 'web'){
+					b64 = file.uri.split(',')[1]
+				}else {
+					console.log('hi')
+					b64 = await FileSystem.readAsStringAsync(file.uri, FileSystem.EncodingType.Base64)
+					console.log(b64)
+					// console.log(JSON.stringify(b64))
+				}
+
+				let strJwk = Base64.decode(b64)
+				let wallet: JWKInterface = JSON.parse(strJwk)
 				
 				setLoggedIn(true)
-
 				onSetWallet(wallet)
 				
 			} catch (err) {
+				console.log((err))
 					alert('Error logging in: ' + err)
 			}
 		}
