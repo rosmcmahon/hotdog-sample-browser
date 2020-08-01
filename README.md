@@ -2,6 +2,8 @@
 
 An interactive dApp that uses the arweave permaweb as storage for short, high quality audio samples.
 
+Strictly Work In Progress - very early development snapshot can be viewed here: (https://arweave.net/E2WXY3tNOFC0N1to9vlCLhAZByAHL6Zwy-9UqD0zx-g/)
+
 # Project Objectives
 
 ## Allow users to:
