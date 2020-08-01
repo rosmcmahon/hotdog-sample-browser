@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native
 import BreadcrumbsText from './BreadcrumbsText';
 import DirListItem from './DirListItem';
 
-interface IItem {
+export interface IItem {
 	key: string,
 	title: string
+	type: 'dir' | 'file'
 }
 
 const FileExplorer = ({ data, style }) => {

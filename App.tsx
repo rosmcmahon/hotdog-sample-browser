@@ -6,19 +6,18 @@ import { StyleSheet, View,
 import BrowseScreen from './src/containers/BrowseScreen'
 import Colors from './src/utility/Colors'
 import Header from './src/containers/Header';
-import { JWKInterface } from './src/types/wallet';
-
+import { IJwk } from './src/utility/JwkUtils';
 
 
 export default function App() {
 	//const selectedFile/Node = useState('') // txID this gets passed back from fileExplorer
-	const [wallet, setWallet] = useState<JWKInterface>()
+	const [wallet, setWallet] = useState<IJwk>()
 
   return (
 		<SafeAreaView style={s.appScreen}>
-			<Header onSetWallet={(w: JWKInterface)=>setWallet(w)}  />
+			<Header onSetWallet={(w: IJwk)=>setWallet(w)}  />
 
-			<BrowseScreen  wallet={wallet} />
+			<BrowseScreen  wallet={wallet as IJwk} />
 			
 			<View key="footer"></View>
 		</SafeAreaView>

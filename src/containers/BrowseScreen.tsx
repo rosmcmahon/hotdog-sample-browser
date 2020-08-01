@@ -2,33 +2,37 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import FileExplorer from '../components/FileExplorer';
 import Colors from '../utility/Colors';
-import { Inode, InodeStatus } from '../storage/Inode'
-import { doArweave } from '../storage/StorageArweave'
-
+import { IJwk } from '../utility/JwkUtils';
+ 
 
 const DATA= [
-	{key:'..', title:'..'},
-	{key:'folder1', title:'folder1'},
-	{key:'folder2', title:'folder2'},
-	{key:'folder3', title:'folder3'},
-	{key:'file1', title:'file1'},
-	{key:'file2', title:'file2'},
-	{key:'file3', title:'file3'},
-	{key:'file4', title:'file4'},
-	{key:'file5', title:'file5'},
+	{key:'..', type: 'dir', title:'..'},
+	{key:'folder1', type: 'dir', title:'default samples'},
+	{key:'folder2', type: 'dir', title:'techno kit 1'},
+	{key:'folder3', type: 'dir', title:'chillwave'},
+	{key:'kick', title:'kick'},
+	{key:'snare', title:'snare'},
+	{key:'clap', title:'clap'},
+	{key:'hihat-open', title:'hihat-open'},
+	{key:'hihat-closed', title:'hihat-closed'},
 ]
 
-
-
-const BrowseScreen =  ({wallet}) => {
+type IProps = {
+	wallet: IJwk
+}
+const BrowseScreen =  ({wallet}:IProps) => {
 
 	// const currentDirectory = useState <- relative to wallet root
 	// current dirlist - always has '..', 
 	// props.selection = current file ??
 
 	useEffect(()=>{
-		
-	},[])
+		if(wallet !== undefined){
+			console.log('wallet changed')
+
+			
+		}
+	},[wallet])
 
 	const onPressNewFolder = () =>{
 		
